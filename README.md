@@ -12,6 +12,7 @@
 
 ### Build Instructions
 ```
+node install
 npx tsc build
 ```
 The module will be outputted inside of the `./out` directory.
@@ -25,3 +26,7 @@ API.listen(80, () => {
     console.log('Optipost is now listening at http://localhost:80`)
 })
 ```
+
+### Requirements
+- express
+- @types/express (optional)
