@@ -1,6 +1,6 @@
 /**
  * @module Optipost
- * @version 2.0.1
+ * @version 2.0.2
  * @author methamphetqmine, nbitzz
  * 
  * @description A wrapper for Express.js that allows you to create endpoints that can only be accessed by Roblox's WinInet user-agent.
@@ -56,3 +56,12 @@ export class Optipost {
         return this.app.listen(port, callback);
     }
 }
+
+const API = new Optipost()
+API.debug = true
+
+API.createEndpoint("GET", "/", (request, response) => {
+    response.send("Hello, world!");
+})
+
+API.listen(80)
