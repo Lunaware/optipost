@@ -7,6 +7,7 @@
  */
 
 import express, { Application, Request, Response, NextFunction } from "express";
+import fs from "fs"
 
 export class Optipost {
     app: Application;
@@ -16,9 +17,15 @@ export class Optipost {
         this.app = express();
         this.Debug = false;
 
+        this.app.use(express.json())
+
         this.app.use((request: Request, response: Response, next: NextFunction) => {
             if (request.headers["user-agent"] === "Roblox/WinInet" && request.headers["Roblox-Place-Id"]) {
-                next()
+                if (request.body["Authentication"] === (process.env.SECRET_KEY)) {
+                    next()
+                } else {
+                    response.status(401).send({ error: "Unauthorized." });
+                }
             } else {
                 response.status(403).send({ error: "Access to this endpoint is forbidden." });
             }
@@ -48,12 +55,3 @@ export class Optipost {
         return this.app.listen(port, callback);
     }
 }
-
-const API = new Optipost()
-API.Debug = true
-
-API.createEndpoint("GET", "/", (request, response) => {
-    response.send("Hello, world!");
-})
-
-API.listen(80)
