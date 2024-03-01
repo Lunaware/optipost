@@ -28,5 +28,5 @@ API.listen(80, () => {
 ```
 
 ### Requirements
-- express
-- @types/express (optional)
+\- `express`
+\- `@types/express` (optional)
