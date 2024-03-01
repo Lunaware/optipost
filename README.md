@@ -11,16 +11,17 @@
 ```
 
 ### Build Instructions
----
-
 ```
 npx tsc build
 ```
+The module will be outputted inside of the `./out` directory.
 
 ### Usage
----
-
 ```js
 import Optipost from <PATH_TO_MODULE>
 const API = new Optipost()
+
+API.listen(80, () => {
+    console.log('Optipost is now listening at http://localhost:80`)
+})
 ```
