@@ -11,17 +11,18 @@ import fs from "fs"
 
 export class Optipost {
     app: Application;
-    Debug: boolean;
+    debug: boolean;
+    authorization: string | undefined;
 
     constructor() {
         this.app = express();
-        this.Debug = false;
+        this.debug = false;
 
         this.app.use(express.json())
 
         this.app.use((request: Request, response: Response, next: NextFunction) => {
             if (request.headers["user-agent"] === "Roblox/WinInet" && request.headers["Roblox-Place-Id"]) {
-                if (request.body["Authentication"] === (process.env.SECRET_KEY)) {
+                if (request.body["Authorization"] === (this.authorization || undefined)) {
                     next()
                 } else {
                     response.status(401).send({ error: "Unauthorized." });
@@ -30,7 +31,7 @@ export class Optipost {
                 response.status(403).send({ error: "Access to this endpoint is forbidden." });
             }
 
-            if (this.Debug === true) {
+            if (this.debug === true) {
                 console.log("[Optipost]:", request.method, "|", response.statusCode, response.statusMessage, "|", request.path);
             }
         })
@@ -55,3 +56,12 @@ export class Optipost {
         return this.app.listen(port, callback);
     }
 }
+
+const API = new Optipost()
+API.debug = true
+
+API.createEndpoint("GET", "/", (request, response) => {
+    response.send("Hello, world!");
+})
+
+API.listen(80)
