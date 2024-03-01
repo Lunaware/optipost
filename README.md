@@ -2,7 +2,7 @@
 **Optipost** is a wrapper for Express.js that allows you to seamlessly communicate ROBLOX projects with a Web API in Javascript and Typescript.
 
 ### Features
-\- Requests that do not have the User-Agent `Roblox/WinInet` will be ignored.
+\- Requests that do not have the User-Agent `Roblox/WinInet` will be ignored.<br>
 \- In future, this will be paired with a LUA package for you to import into your projects.
 
 ```ts
