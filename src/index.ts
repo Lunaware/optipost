@@ -6,23 +6,27 @@
  * @description A wrapper for Express.js that allows you to create endpoints that can only be accessed by Roblox's WinInet user-agent.
  */
 
-import express, { Application, Request, Response } from "express";
+import express, { Application, Request, Response, NextFunction } from "express";
 
 export class Optipost {
     app: Application;
+    Debug: boolean;
 
     constructor() {
         this.app = express();
-    }
+        this.Debug = false;
 
-    private callbackWrapper(callback: Function | undefined) {
-        return (request: Request, response: Response) => {
-            if (request.headers["user-agent"] === "Roblox/WinInet") {
-                callback?.(request, response);
+        this.app.use((request: Request, response: Response, next: NextFunction) => {
+            if (request.headers["user-agent"] === "Roblox/WinInet" && request.headers["Roblox-Place-Id"]) {
+                next()
             } else {
-                response.status(403).send("Access to this endpoint is forbidden.");
+                response.status(403).send({ error: "Access to this endpoint is forbidden." });
             }
-        };
+
+            if (this.Debug === true) {
+                console.log("[Optipost]:", request.method, "|", response.statusCode, response.statusMessage, "|", request.path);
+            }
+        })
     }
 
     async createEndpoint(
@@ -37,10 +41,19 @@ export class Optipost {
             return;
         }
 
-        return method(url, this.callbackWrapper(callback));
+        return method(url, callback);
     }
 
     async listen(port: number, callback?: () => void) {
         return this.app.listen(port, callback);
     }
 }
+
+const API = new Optipost()
+API.Debug = true
+
+API.createEndpoint("GET", "/", (request, response) => {
+    response.send("Hello, world!");
+})
+
+API.listen(80)
