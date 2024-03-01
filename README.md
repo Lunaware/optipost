@@ -31,3 +31,6 @@ API.listen(80, () => {
 \- `typescript` (required)<br>
 \- `express` (required)<br>
 \- `@types/express` (optional)
+
+### License
+Licensed under `GNU General Public License v3.0`. Modifications of this repository must be shared.
