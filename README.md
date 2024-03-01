@@ -1,4 +1,5 @@
 # Optipost
+Optipost is a wrapper for Express.js that allows you to seamlessly communicate with a Web API in Javascript and Typescript.
 
 ```ts
 /**
