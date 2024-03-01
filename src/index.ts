@@ -1,7 +1,7 @@
 /**
  * @module Optipost
- * @version 2.0.0
- * @author methamphetqmine
+ * @version 2.0.1
+ * @author methamphetqmine, nbitzz
  * 
  * @description A wrapper for Express.js that allows you to create endpoints that can only be accessed by Roblox's WinInet user-agent.
  */
