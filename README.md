@@ -15,6 +15,10 @@
  */
 ```
 
+### Development Roadmap
+\- Add custom authorization to add extra security.<br>
+\- Support deployment to a Heroku project.<br>
+
 ### Build Instructions
 ```
 node install
