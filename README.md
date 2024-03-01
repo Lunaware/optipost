@@ -1,5 +1,4 @@
 # Optipost
----
 
 ```ts
 /**
@@ -14,6 +13,14 @@
 ### Build Instructions
 ---
 
-```ts
+```
 npx tsc build
+```
+
+### Usage
+---
+
+```js
+import Optipost from <PATH_TO_MODULE>
+const API = new Optipost()
 ```
