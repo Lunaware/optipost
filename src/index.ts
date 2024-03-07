@@ -56,12 +56,3 @@ export class Optipost {
         return this.app.listen(port, callback);
     }
 }
-
-const API = new Optipost()
-API.debug = true
-
-API.createEndpoint("GET", "/", (request, response) => {
-    response.send("Hello, world!");
-})
-
-API.listen(80)
