@@ -22,7 +22,7 @@ export class Optipost {
 
         this.app.use((request: Request, response: Response, next: NextFunction) => {
             if (request.headers["user-agent"] === "Roblox/WinInet" && request.headers["Roblox-Place-Id"]) {
-                if (request.body["Authorization"] === (this.authorization || undefined)) {
+                if (request.headers["Authorization"] === (this.authorization || undefined)) {
                     next()
                 } else {
                     response.status(401).send({ error: "Unauthorized." });
