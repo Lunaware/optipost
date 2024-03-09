@@ -12,7 +12,7 @@ import fs from "fs"
 export class Optipost {
     app: Application;
     debug: boolean;
-    authorization: string | undefined;
+    Authorization: string | undefined;
 
     constructor() {
         this.app = express();
@@ -22,7 +22,7 @@ export class Optipost {
 
         this.app.use((request: Request, response: Response, next: NextFunction) => {
             if (request.headers["user-agent"] === "Roblox/WinInet" && request.headers["Roblox-Place-Id"]) {
-                if (request.body["Authorization"] === (this.authorization || undefined)) {
+                if (request.headers["Authorization"] === (this.Authorization || undefined)) {
                     next()
                 } else {
                     response.status(401).send({ error: "Unauthorized." });
@@ -56,12 +56,3 @@ export class Optipost {
         return this.app.listen(port, callback);
     }
 }
-
-const API = new Optipost()
-API.debug = true
-
-API.createEndpoint("GET", "/", (request, response) => {
-    response.send("Hello, world!");
-})
-
-API.listen(80)
