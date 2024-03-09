@@ -3,7 +3,7 @@
  * @version 2.0.2
  * @author methamphetqmine, nbitzz
  * 
- * @description A wrapper for Express.js that allows you to create endpoints that can only be accessed by Roblox's WinInet user-agent.
+ * @description A basic wrapper for the express library that only accepts incoming requests that have the Roblox/WinInet User-Agent and the Roblox-Place-Id header.
  */
 
 import express, { Application, Request, Response, NextFunction } from "express";
