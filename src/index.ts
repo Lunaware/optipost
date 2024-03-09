@@ -25,10 +25,10 @@ export class Optipost {
                 if (request.headers["Authorization"] === (this.Authorization || undefined)) {
                     next()
                 } else {
-                    response.status(401).send({ error: "Unauthorized." });
+                    response.status(401).send({ error: "Invalid Authorization." });
                 }
             } else {
-                response.status(403).send({ error: "Access to this endpoint is forbidden." });
+                response.status(403).send({ error: "Forbidden." });
             }
 
             if (this.debug === true) {
