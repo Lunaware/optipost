@@ -3,7 +3,7 @@
 
 ### Features
 \- Requests that do not have the User-Agent `Roblox/WinInet` will be ignored.<br>
-\- In future, this will be paired with a LUA package for you to import into your projects.
+\- Now paired with a new repository, [optipost-lua](https://github.com/Lunaware/optipost-lua)
 
 ```ts
 /**
@@ -11,9 +11,6 @@
  * @author methamphetqmine, nbitzz
  */
 ```
-
-### Development Roadmap
-\- Support deployment to a Heroku project.<br>
 
 ### Build Instructions
 ```
@@ -24,22 +21,17 @@ The module will be outputted inside of the `./out` directory.
 
 ### Usage
 ```ts
-import Optipost from <PATH_TO_MODULE>
+import Optipost from "./Optipost.js"
 const API = new Optipost()
 
-API.createEndpoint("GET", "/", (request, response) => {
+API.createEndpoint("GET", "/connect", (request, response) => {
     response.send("Hello, world!");
 })
 
 API.listen(80, () => {
-    console.log('Optipost is now listening at http://localhost:80`)
+    console.log(`Optipost is now listening at http://localhost:80`);
 })
 ```
-
-### Requirements
-\- `typescript` (required)<br>
-\- `express` (required)<br>
-\- `@types/express` (optional)
 
 ### License
 \- Licensed under `GNU General Public License v3.0`. Modifications of this repository must be shared.

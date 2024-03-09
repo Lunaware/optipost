@@ -7,7 +7,6 @@
  */
 
 import express, { Application, Request, Response, NextFunction } from "express";
-import fs from "fs"
 
 export class Optipost {
     app: Application;
