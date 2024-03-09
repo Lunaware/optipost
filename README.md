@@ -8,20 +8,16 @@
 ```ts
 /**
  * @module Optipost
- * @version 2.0.2
  * @author methamphetqmine, nbitzz
- * 
- * @description A wrapper for Express.js that allows you to create endpoints that can only be accessed by Roblox's WinInet user-agent.
  */
 ```
 
 ### Development Roadmap
-\- Add custom authorization to add extra security.<br>
 \- Support deployment to a Heroku project.<br>
 
 ### Build Instructions
 ```
-node install
+npm install
 npx tsc build
 ```
 The module will be outputted inside of the `./out` directory.
@@ -30,6 +26,10 @@ The module will be outputted inside of the `./out` directory.
 ```ts
 import Optipost from <PATH_TO_MODULE>
 const API = new Optipost()
+
+API.createEndpoint("GET", "/", (request, response) => {
+    response.send("Hello, world!");
+})
 
 API.listen(80, () => {
     console.log('Optipost is now listening at http://localhost:80`)
