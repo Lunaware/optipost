@@ -1,37 +1,63 @@
 # Optipost
-**Optipost** is a wrapper for Express.js that allows you to seamlessly communicate ROBLOX projects with a Web API in Javascript and Typescript.
 
-### Features
-\- Requests that do not have the User-Agent `Roblox/WinInet` will be ignored.<br>
-\- Now paired with a new repository, [optipost-lua](https://github.com/Lunaware/optipost-lua)
+Optipost is a basic wrapper for the Express.js library. It is designed to only accept incoming requests that have the `Roblox/WinInet` User-Agent and the `Roblox-Place-Id` header.
 
-```ts
-/**
- * @module Optipost
- * @author methamphetqmine, nbitzz
- */
-```
+## Features
 
-### Build Instructions
-```
+- Express.js wrapper
+- User-Agent and header validation
+- Debug mode
+- Endpoint creation
+- Server listening
+
+## Build
+
+To build Optipost, you can use tsc:
+
+```bash
 npm install
-npx tsc build
-```
-The module will be outputted inside of the `./out` directory.
-
-### Usage
-```ts
-import Optipost from "./Optipost.js"
-const API = new Optipost()
-
-API.createEndpoint("GET", "/connect", (request, response) => {
-    response.send("Hello, world!");
-})
-
-API.listen(80, () => {
-    console.log(`Optipost is now listening at http://localhost:80`);
-})
+npx tsc
+node ./out/index.js.
 ```
 
-### License
-\- Licensed under `GNU General Public License v3.0`. Modifications of this repository must be shared.
+## Usage
+
+Here is a basic example of how to use Optipost:
+
+```typescript
+import { Optipost } from './Optipost.js';
+
+const server = new Optipost();
+
+server.createEndpoint('get', '/test', (req, res) => {
+    res.send('Hello, world!');
+});
+
+server.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+```
+
+In this example, we create a new instance of Optipost, create a GET endpoint at `/test` that responds with "Hello, world!", and start the server on port 3000.
+
+## API
+
+### `new Optipost()`
+
+Creates a new instance of Optipost.
+
+### `createEndpoint(method: string, url: string, callback: (request: Request, response: Response) => void)`
+
+Creates a new endpoint with the specified method, URL, and callback function.
+
+### `listen(port: number, callback?: () => void)`
+
+Starts the server on the specified port. The optional callback function is called when the server starts.
+
+## Contributing
+
+Contributions are welcome! Please submit a pull request or create an issue to contribute.
+
+## License
+
+Optipost is licensed under `The GNU General Public License v3.0`.
