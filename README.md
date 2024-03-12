@@ -54,10 +54,6 @@ Creates a new endpoint with the specified method, URL, and callback function.
 
 Starts the server on the specified port. The optional callback function is called when the server starts.
 
-## Contributing
-
-Contributions are welcome! Please submit a pull request or create an issue to contribute.
-
 ## License
 
 Optipost is licensed under `The GNU General Public License v3.0`.
